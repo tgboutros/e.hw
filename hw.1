@@ -1,0 +1,169 @@
+1) i use javascript 
+
+function reverseString(str) {
+    let reversed = "";
+    for (let i = str.length - 1; i >= 0; i--) {
+      reversed += str[i]; 
+    }
+  
+    return reversed;
+  }
+  
+  // Example 
+  console.log(reverseString("hello")); //olleh
+  console.log(reverseString("tony"));//niuodeb
+  console.log(reverseString("boutos"));//rematiba
+  console.log(reverseString("eurisko academy"));//ymedaca oksirue
+
+2) i use typescript 
+function countVowels(str: string): number {
+    let count = 0;
+    const vowels = "aeiou";
+  
+    
+    for (let i = 0; i < str.length; i++) {
+      const char = str[i].toLowerCase(); // lowercase to Detect capital letters too
+      if (vowels.includes(char)) {
+        count++;
+      }
+    }
+  
+    return count;
+  }
+  
+  // Example
+  console.log(countVowels("typescript")); // Output: 2
+  console.log(countVowels("hi")); // Output: 5
+  console.log(countVowels("bye")); // Output: 3
+  console.log(countVowels("eurisko")); // Output: 3
+  console.log(countVowels("tonyy")); // Output: 3
+
+3) i use javascript 
+  
+  function findMissingNumber(arr) {
+    const n = arr.length + 1;
+    let sum = 0;
+    const expectedSum = (n * (n + 1)) / 2;
+    for (let i = 0; i < arr.length; i++) {
+      sum += arr[i];
+    }
+    return expectedSum - sum;
+  }
+  // Example usage:
+  console.log(findMissingNumber([1, 2, 4, 5, 6])); // Output: 3
+
+4)i use typescript
+ function firstNonRepeatingChar(str: string): string | null {
+  for (let i = 0; i < str.length; i++) {
+    if (str.indexOf(str[i]) === str.lastIndexOf(str[i])) {
+      return str[i];
+    }
+  }
+  return null;
+}
+
+// Example
+console.log(firstNonRepeatingChar("lambo")); // Output: "w"
+console.log(firstNonRepeatingChar("car")); // Output: "e"
+console.log(firstNonRepeatingChar("bye")); // Output: "e"
+console.log(firstNonRepeatingChar("tonyyy")); // Output: "b"
+
+5)i use javascript
+function deepEqual(obj1, obj2) {
+  if (obj1 === obj2) {
+    return true;
+  }
+  if (typeof obj1 !== 'object' || obj1 === null || typeof obj2 !== 'object' || obj2 === null) {
+    return false;
+  }
+  for (let a in obj1) {
+    if (!(a in obj2) || !deepEqual(obj1[a], obj2[a])) {
+      return false;
+    }
+  }
+  for (let a in obj2) {
+    if (!(a in obj1)) {
+      return false;
+    }
+  }
+  return true;
+}
+// Example
+console.log(deepEqual({ a: 1, b: { c: 2 } }, { a: 1, b: { c: 2 } })); // true
+console.log(deepEqual({ a: 1, b: { c: 2 } }, { a: 1, b: { c: 3 } })); // false
+console.log(deepEqual({ a: 1, b: { c: 3 } }, { a: 1, b: { c: 3 } })); // true
+
+
+6)class LRUCache {
+    private capacity: number;
+    private cache: Map<number, number>;
+
+    constructor(capacity: number) {
+        this.capacity = capacity;
+        this.cache = new Map();
+    }
+
+    get(key: number): number | null {
+        if (!this.cache.has(key)) return null;
+
+        const value = this.cache.get(key)!;
+        this.cache.delete(key);
+        this.cache.set(key, value); // Refresh the position
+        return value;
+    }
+
+    put(key: number, value: number): void {
+        if (this.cache.has(key)) {
+            this.cache.delete(key);
+        } else if (this.cache.size >= this.capacity) {
+            // Remove the least recently used item (first one in the map)
+            const oldestKey = this.cache.keys().next().value;
+            this.cache.delete(oldestKey);
+        }
+
+        this.cache.set(key, value);
+    }
+}
+
+// Example Usage:
+const cache = new LRUCache(2);
+cache.put(1, 1);
+cache.put(2, 2);
+console.log(cache.get(1)); // 1
+cache.put(3, 3); // Removes key 2
+console.log(cache.get(2)); // null
+cache.put(4, 4); // Removes key 1
+console.log(cache.get(1)); // null
+console.log(cache.get(3)); // 3
+console.log(cache.get(4)); // 4
+
+7)function deepEqual(obj1, obj2) {
+  if (obj1 === obj2) {
+    return true;
+  }
+  if (typeof obj1 !== 'object' || obj1 === null || typeof obj2 !== 'object' || obj2 === null) {
+    return false;
+  }
+  for (let a in obj1) {
+    if (!(a in obj2) || !deepEqual(obj1[a], obj2[a])) {
+      return false;
+    }
+  }
+  for (let a in obj2) {
+    if (!(a in obj1)) {
+      return false;
+    }
+  }
+  return true;
+}
+// Example
+console.log(deepEqual({ a: 1, b: { c: 2 } }, { a: 1, b: { c: 2 } })); // true
+console.log(deepEqual({ a: 1, b: { c: 2 } }, { a: 1, b: { c: 3 } })); // false
+console.log(deepEqual({ a: 1, b: { c: 3 } }, { a: 1, b: { c: 3 } })); // true
+console.log(deepEqual({ a: 1, b: { c: 3 } }, { a: 1, b: { c: 10 } })); // false
+
+
+
+
+  
+
