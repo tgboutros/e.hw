@@ -137,33 +137,51 @@ console.log(cache.get(1)); // null
 console.log(cache.get(3)); // 3
 console.log(cache.get(4)); // 4
 
-7)function deepEqual(obj1, obj2) {
-  if (obj1 === obj2) {
-    return true;
+7)
+class TaskManager {
+  private tasks: { id: number; name: string; status: string }[] = [];
+  private currentId: number = 1;
+  addTask(name: string): void {
+    if (typeof name !== 'string') {
+      throw new Error('Task name must be a string');
+    }
+
+    this.tasks.push({
+      id: this.currentId,
+      name: name,
+      status: 'Incomplete',
+    });
+    this.currentId++; 
   }
-  if (typeof obj1 !== 'object' || obj1 === null || typeof obj2 !== 'object' || obj2 === null) {
-    return false;
-  }
-  for (let a in obj1) {
-    if (!(a in obj2) || !deepEqual(obj1[a], obj2[a])) {
-      return false;
+  completeTask(id: number): void {
+    let taskFound = false;
+    for (let task of this.tasks) {
+      if (task.id === id) {
+        task.status = 'Completed';
+        taskFound = true;
+        break;
+      }
+    }
+    if (!taskFound) {
+      throw new Error(`Task with ID ${id} not found`);
     }
   }
-  for (let a in obj2) {
-    if (!(a in obj1)) {
-      return false;
-    }
+  displayTasks(): void {
+    this.tasks.forEach(task => {
+      console.log(`Task ID: ${task.id}, Name: "${task.name}", Status: ${task.status}`);
+    });
   }
-  return true;
 }
+
 // Example
-console.log(deepEqual({ a: 1, b: { c: 2 } }, { a: 1, b: { c: 2 } })); // true
-console.log(deepEqual({ a: 1, b: { c: 2 } }, { a: 1, b: { c: 3 } })); // false
-console.log(deepEqual({ a: 1, b: { c: 3 } }, { a: 1, b: { c: 3 } })); // true
-console.log(deepEqual({ a: 1, b: { c: 3 } }, { a: 1, b: { c: 10 } })); // false
+const taskManager = new TaskManager();
+taskManager.addTask("Learn TypeScript");
+taskManager.addTask("Complete Assignment");
 
-
-
-
+// Adding 2 new tasks
+taskManager.addTask("Go for a walk");
+taskManager.addTask("Read a book");
+taskManager.completeTask(1); 
+taskManager.displayTasks(); 
   
 
